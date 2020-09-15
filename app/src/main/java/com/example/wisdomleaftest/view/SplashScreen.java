@@ -1,10 +1,12 @@
-package com.example.wisdomleaftest;
+package com.example.wisdomleaftest.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.wisdomleaftest.R;
 
 public class SplashScreen extends AppCompatActivity {
 
