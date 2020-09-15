@@ -1,6 +1,7 @@
 package com.example.wisdomleaftest.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -28,11 +29,15 @@ public class MainActivity extends AppCompatActivity implements ShowImagesView {
     @BindView(R.id.imagesList)
     RecyclerView imagesList;
 
+    private ImagesListAdapter imagesListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        imagesListAdapter = new ImagesListAdapter(this);
 
         ShowImagesPresenter showImagesPresenter = new ShowImagesPresenterImpl(this, new ShowImagesProviderImpl());
         showImagesPresenter.getImages(2, 20);
@@ -50,7 +55,17 @@ public class MainActivity extends AppCompatActivity implements ShowImagesView {
 
     @Override
     public void showMovieDetails(List<ImagesResponseData> imagesResponseData) {
-        Toast.makeText(this, "" + imagesResponseData.size(), Toast.LENGTH_SHORT).show();
+        if (imagesResponseData.size() != 0) {
+            imagesListAdapter.setData(imagesResponseData);
+            GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
+            imagesList.setLayoutManager(layoutManager);
+            imagesList.setHasFixedSize(true);
+            imagesList.setAdapter(imagesListAdapter);
+            imagesListAdapter.notifyDataSetChanged();
+
+        }
+
+
     }
 
     @Override
