@@ -14,13 +14,18 @@ android {
     buildTypes {
 
         debug {
-            buildConfigField 'String', 'BASE_URL', '"https://picsum.photos"'
+            buildConfigField 'String', 'BASE_URL', '"https://picsum.photos/v2/list/"'
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
 
