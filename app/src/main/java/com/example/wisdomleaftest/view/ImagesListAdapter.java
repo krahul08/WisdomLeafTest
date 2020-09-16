@@ -9,11 +9,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.wisdomleaftest.R;
 import com.example.wisdomleaftest.data.ImagesResponseData;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,7 +37,6 @@ public class ImagesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-
     public void setData(List<ImagesResponseData> imagesResponseData) {
         this.imagesResponseData = imagesResponseData;
     }
@@ -46,16 +51,27 @@ public class ImagesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         final ImagesListAdapter.listHolder listHolder = (ImagesListAdapter.listHolder) holder;
-        Glide.with(context).load("https://www.google.co.in/url?sa=i&url=https%3A%2F%2Fin.pinterest.com%2Fpin%2F776237685759631394%2F&psig=AOvVaw3-iQftHhquR1RuribENkgG&ust=1600283583091000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCG7ojv6-sCFQAAAAAdAAAAABAD").into(listHolder.imageView);
         ImagesResponseData bookmarkData = imagesResponseData.get(position);
-        Toast.makeText(context, "" + bookmarkData.getUrl(), Toast.LENGTH_SHORT).show();
         listHolder.textView.setText(bookmarkData.getAuthor());
+        listHolder.imageView.getLayoutParams().height = bookmarkData.getHeight();
+        listHolder.imageView.getLayoutParams().width = bookmarkData.getWidth();
+        listHolder.imageView.requestLayout();
+        Glide.with(context).load(bookmarkData.getDownload_url())
+                .thumbnail(0.5f)
+                .crossFade()
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        return false;
+                    }
 
-//        listHolder.imageView.getLayoutParams().height = bookmarkData.getHeight();
-//        listHolder.imageView.getLayoutParams().width = bookmarkData.getWidth();
-//        listHolder.imageView.requestLayout();
-
-
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        return false;
+                    }
+                })
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(listHolder.imageView);
     }
 
     @Override
@@ -66,7 +82,7 @@ public class ImagesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class listHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
+        AppCompatImageView imageView;
         TextView textView;
 
 

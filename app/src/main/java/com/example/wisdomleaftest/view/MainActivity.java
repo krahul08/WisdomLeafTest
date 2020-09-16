@@ -1,10 +1,12 @@
 package com.example.wisdomleaftest.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -30,18 +32,47 @@ public class MainActivity extends AppCompatActivity implements ShowImagesView {
     RecyclerView imagesList;
 
     private ImagesListAdapter imagesListAdapter;
+    ShowImagesPresenter showImagesPresenter;
+    private boolean loading = true;
+    GridLayoutManager layoutManager;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        layoutManager = new GridLayoutManager(getApplicationContext(), 2);
 
         imagesListAdapter = new ImagesListAdapter(this);
+        showImagesPresenter = new ShowImagesPresenterImpl(this, new ShowImagesProviderImpl());
+        callApi();
 
-        ShowImagesPresenter showImagesPresenter = new ShowImagesPresenterImpl(this, new ShowImagesProviderImpl());
+        imagesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0) { //check for scroll down
+                    visibleItemCount = layoutManager.getChildCount();
+                    totalItemCount = layoutManager.getItemCount();
+                    pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
+
+                    if (loading) {
+                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                            loading = false;
+                            Log.d("hjfjjjfjfjfjfjfjf", "Last Item Wow !");
+                            // Do pagination.. i.e. fetch new data
+                            callApi();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void callApi() {
         showImagesPresenter.getImages(2, 20);
-
     }
 
     @Override
@@ -57,14 +88,12 @@ public class MainActivity extends AppCompatActivity implements ShowImagesView {
     public void showMovieDetails(List<ImagesResponseData> imagesResponseData) {
         if (imagesResponseData.size() != 0) {
             imagesListAdapter.setData(imagesResponseData);
-            GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
             imagesList.setLayoutManager(layoutManager);
             imagesList.setHasFixedSize(true);
             imagesList.setAdapter(imagesListAdapter);
             imagesListAdapter.notifyDataSetChanged();
 
         }
-
 
     }
 
