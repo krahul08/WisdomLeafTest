@@ -9,14 +9,6 @@ public class ImagesResponseData {
     private String url;
     private String download_url;
 
-    public ImagesResponseData(int id, String author, int width, int height, String url, String download_url) {
-        this.id = id;
-        this.author = author;
-        this.width = width;
-        this.height = height;
-        this.url = url;
-        this.download_url = download_url;
-    }
 
     public int getId() {
         return id;
