@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ShowImagesView, S
         showImagesPresenter = new ShowImagesPresenterImpl(this, new ShowImagesProviderImpl());
 
         layoutManager = new StaggeredGridLayoutManager(2, LinearLayout.VERTICAL);
-        layoutManager.setGapStrategy(StaggeredGridLayoutManager.);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         imagesListAdapter = new ImagesListAdapter(this, new ArrayList<>());
         imagesList.setLayoutManager(layoutManager);
         imagesList.setHasFixedSize(true);

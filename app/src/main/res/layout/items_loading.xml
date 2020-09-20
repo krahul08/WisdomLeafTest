@@ -13,8 +13,6 @@
         android:indeterminateOnly="true"
         android:indeterminateBehavior="repeat"
         android:maxHeight="24dip"
-
         />
-
 
 </LinearLayout>

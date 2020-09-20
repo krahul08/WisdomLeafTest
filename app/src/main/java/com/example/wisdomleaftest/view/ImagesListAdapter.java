@@ -1,6 +1,8 @@
 package com.example.wisdomleaftest.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -111,12 +114,14 @@ public class ImagesListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         AppCompatImageView imageView;
         TextView textView;
+        CardView card_view;
 
 
         public listHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image_view);
             textView = itemView.findViewById(R.id.text_view);
+            card_view = itemView.findViewById(R.id.card_view);
         }
 
         @Override
@@ -150,6 +155,23 @@ public class ImagesListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     })
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
+
+            card_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                    dialog.setMessage(responseData.getAuthor());
+                    dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alertDialog = dialog.create();
+                    alertDialog.show();
+                }
+            });
         }
     }
 
