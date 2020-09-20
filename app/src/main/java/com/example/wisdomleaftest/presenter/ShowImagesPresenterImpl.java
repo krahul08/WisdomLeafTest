@@ -6,6 +6,7 @@ import com.example.wisdomleaftest.data.ImagesResponseData;
 import com.example.wisdomleaftest.provider.ShowImagesProviderImpl;
 import com.example.wisdomleaftest.view.ShowImagesView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowImagesPresenterImpl implements ShowImagesPresenter {
@@ -23,7 +24,7 @@ public class ShowImagesPresenterImpl implements ShowImagesPresenter {
         showImagesView.showProgress(true);
         showImagesProvider.getImages(page, limit, new ImagesCallback() {
             @Override
-            public void onSuccess(List<ImagesResponseData> imagesResponseData) {
+            public void onSuccess(ArrayList<ImagesResponseData> imagesResponseData) {
                 showImagesView.showProgress(false);
                 showImagesView.showMovieDetails(imagesResponseData);
             }

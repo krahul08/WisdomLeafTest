@@ -1,13 +1,12 @@
 package com.example.wisdomleaftest.provider;
 
-import android.util.Log;
 
 import com.example.wisdomleaftest.ImagesCallback;
 import com.example.wisdomleaftest.api.ImagesApi;
 import com.example.wisdomleaftest.data.ImagesResponseData;
 import com.example.wisdomleaftest.utils.RetrofitServiceProvider;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,20 +23,18 @@ public class ShowImagesProviderImpl implements ShowImagesProvider {
 
     @Override
     public void getImages(int page, int limit, final ImagesCallback imagesCallback) {
-        Call<List<ImagesResponseData>> imagesResponseDataCall = imagesApi.getImages(page, limit);
-        imagesResponseDataCall.enqueue(new Callback<List<ImagesResponseData>>() {
+        Call<ArrayList<ImagesResponseData>> imagesResponseDataCall = imagesApi.getImages(page, limit);
+        imagesResponseDataCall.enqueue(new Callback<ArrayList<ImagesResponseData>>() {
             @Override
-            public void onResponse(Call<List<ImagesResponseData>> call, Response<List<ImagesResponseData>> response) {
+            public void onResponse(Call<ArrayList<ImagesResponseData>> call, Response<ArrayList<ImagesResponseData>> response) {
                 imagesCallback.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<ImagesResponseData>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<ImagesResponseData>> call, Throwable t) {
                 imagesCallback.onFailure();
                 t.getMessage();
-
             }
         });
-
     }
 }

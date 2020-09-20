@@ -1,12 +1,12 @@
 package com.example.wisdomleaftest.view;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -23,6 +23,8 @@ import com.example.wisdomleaftest.utils.BaseViewHolder;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 public class ImagesListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private LayoutInflater layoutInflater;
@@ -33,15 +35,12 @@ public class ImagesListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private boolean isLoaderVisible = false;
 
 
-    public ImagesListAdapter(Context context) {
+    public ImagesListAdapter(Context context, List<ImagesResponseData> imagesResponseData) {
         this.context = context;
+        this.imagesResponseData = imagesResponseData;
         if (context != null) {
             layoutInflater = LayoutInflater.from(context);
         }
-    }
-
-    public void setData(List<ImagesResponseData> imagesResponseData) {
-        this.imagesResponseData = imagesResponseData;
     }
 
     @NonNull
@@ -131,12 +130,13 @@ public class ImagesListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             ImagesResponseData responseData = imagesResponseData.get(position);
 
             textView.setText(responseData.getAuthor());
-            imageView.getLayoutParams().height = responseData.getHeight();
             imageView.getLayoutParams().width = responseData.getWidth();
+            imageView.getLayoutParams().height = responseData.getHeight();
             imageView.requestLayout();
             Glide.with(context).load(responseData.getDownload_url())
                     .thumbnail(0.5f)
                     .crossFade()
+                    .placeholder(new ColorDrawable(Color.DKGRAY))
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -156,14 +156,13 @@ public class ImagesListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private class ProgressHolder extends BaseViewHolder {
 
-
         public ProgressHolder(View itemview) {
             super(itemview);
+            ButterKnife.bind(this, itemview);
         }
 
         @Override
         protected void clear() {
-
         }
     }
 }
