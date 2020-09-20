@@ -1,4 +1,4 @@
-package com.example.wisdomleaftest.view;
+package com.example.wisdomleaftest.dashboard.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,7 +21,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.wisdomleaftest.R;
-import com.example.wisdomleaftest.data.ImagesResponseData;
+import com.example.wisdomleaftest.dashboard.data.ImagesResponseData;
 import com.example.wisdomleaftest.utils.BaseViewHolder;
 
 import java.util.List;

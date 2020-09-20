@@ -1,4 +1,4 @@
-package com.example.wisdomleaftest.data;
+package com.example.wisdomleaftest.dashboard.data;
 
 public class ImagesResponseData {
 

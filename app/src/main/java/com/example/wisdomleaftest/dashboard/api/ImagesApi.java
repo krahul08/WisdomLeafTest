@@ -1,10 +1,8 @@
-package com.example.wisdomleaftest.api;
+package com.example.wisdomleaftest.dashboard.api;
 
-import com.example.wisdomleaftest.data.ImagesResponseData;
+import com.example.wisdomleaftest.dashboard.data.ImagesResponseData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

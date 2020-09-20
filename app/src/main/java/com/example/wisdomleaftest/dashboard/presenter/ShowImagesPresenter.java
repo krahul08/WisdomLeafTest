@@ -1,4 +1,4 @@
-package com.example.wisdomleaftest.presenter;
+package com.example.wisdomleaftest.dashboard.presenter;
 
 public interface ShowImagesPresenter {
 

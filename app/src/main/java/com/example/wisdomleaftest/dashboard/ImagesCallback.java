@@ -1,9 +1,8 @@
-package com.example.wisdomleaftest;
+package com.example.wisdomleaftest.dashboard;
 
-import com.example.wisdomleaftest.data.ImagesResponseData;
+import com.example.wisdomleaftest.dashboard.data.ImagesResponseData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface ImagesCallback {
     void onSuccess(ArrayList<ImagesResponseData> imagesResponseData);

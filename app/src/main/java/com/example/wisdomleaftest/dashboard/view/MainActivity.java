@@ -1,7 +1,6 @@
-package com.example.wisdomleaftest.view;
+package com.example.wisdomleaftest.dashboard.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -13,10 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.wisdomleaftest.R;
-import com.example.wisdomleaftest.data.ImagesResponseData;
-import com.example.wisdomleaftest.presenter.ShowImagesPresenter;
-import com.example.wisdomleaftest.presenter.ShowImagesPresenterImpl;
-import com.example.wisdomleaftest.provider.ShowImagesProviderImpl;
+import com.example.wisdomleaftest.dashboard.data.ImagesResponseData;
+import com.example.wisdomleaftest.dashboard.presenter.ShowImagesPresenter;
+import com.example.wisdomleaftest.dashboard.presenter.ShowImagesPresenterImpl;
+import com.example.wisdomleaftest.dashboard.provider.ShowImagesProviderImpl;
 import com.example.wisdomleaftest.utils.PaginationListener;
 
 import java.util.ArrayList;

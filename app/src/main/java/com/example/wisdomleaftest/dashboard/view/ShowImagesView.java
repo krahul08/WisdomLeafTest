@@ -1,9 +1,8 @@
-package com.example.wisdomleaftest.view;
+package com.example.wisdomleaftest.dashboard.view;
 
-import com.example.wisdomleaftest.data.ImagesResponseData;
+import com.example.wisdomleaftest.dashboard.data.ImagesResponseData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface ShowImagesView {
 

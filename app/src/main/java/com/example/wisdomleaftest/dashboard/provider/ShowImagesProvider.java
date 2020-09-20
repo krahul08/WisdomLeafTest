@@ -1,6 +1,6 @@
-package com.example.wisdomleaftest.provider;
+package com.example.wisdomleaftest.dashboard.provider;
 
-import com.example.wisdomleaftest.ImagesCallback;
+import com.example.wisdomleaftest.dashboard.ImagesCallback;
 
 public interface ShowImagesProvider {
 

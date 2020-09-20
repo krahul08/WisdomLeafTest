@@ -1,9 +1,9 @@
-package com.example.wisdomleaftest.provider;
+package com.example.wisdomleaftest.dashboard.provider;
 
 
-import com.example.wisdomleaftest.ImagesCallback;
-import com.example.wisdomleaftest.api.ImagesApi;
-import com.example.wisdomleaftest.data.ImagesResponseData;
+import com.example.wisdomleaftest.dashboard.ImagesCallback;
+import com.example.wisdomleaftest.dashboard.api.ImagesApi;
+import com.example.wisdomleaftest.dashboard.data.ImagesResponseData;
 import com.example.wisdomleaftest.utils.RetrofitServiceProvider;
 
 import java.util.ArrayList;

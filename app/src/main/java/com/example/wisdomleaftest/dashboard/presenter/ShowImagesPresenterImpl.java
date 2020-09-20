@@ -1,13 +1,12 @@
-package com.example.wisdomleaftest.presenter;
+package com.example.wisdomleaftest.dashboard.presenter;
 
 
-import com.example.wisdomleaftest.ImagesCallback;
-import com.example.wisdomleaftest.data.ImagesResponseData;
-import com.example.wisdomleaftest.provider.ShowImagesProviderImpl;
-import com.example.wisdomleaftest.view.ShowImagesView;
+import com.example.wisdomleaftest.dashboard.ImagesCallback;
+import com.example.wisdomleaftest.dashboard.data.ImagesResponseData;
+import com.example.wisdomleaftest.dashboard.provider.ShowImagesProviderImpl;
+import com.example.wisdomleaftest.dashboard.view.ShowImagesView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ShowImagesPresenterImpl implements ShowImagesPresenter {
 
