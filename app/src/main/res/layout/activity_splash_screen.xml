@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@color/color_white"
     android:orientation="vertical"
     tools:context=".welcome.SplashScreen">
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/choo_se_your_wallpaper"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_dark_blue"
         android:textSize="@dimen/text_size_medium"
         android:textStyle="bold" />
 
